@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dashai-qwen35-9b-model-package"
+version = "0.1.0"
+description = "Qwen3.5 9B text generation models for DashAI in GGUF quantizations from Q3_K_S to BF16, with thinking mode disabled and partial GPU offload"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "nicolasnast-png" }]
+keywords = ["DashAI", "Model"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+# No declared dependencies on purpose: the plugin runs inside DashAI, which already
+# ships llama-cpp-python, huggingface-hub and jinja2. Declaring them could make the
+# DashAI plugin installer try to build llama-cpp-python from source.
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/nicolasnast-png/dashai-qwen35-9b-model-package"
+Issues = "https://github.com/nicolasnast-png/dashai-qwen35-9b-model-package/issues"
+Model = "https://huggingface.co/Qwen/Qwen3.5-9B"
+GGUF = "https://huggingface.co/unsloth/Qwen3.5-9B-GGUF"
+
+# One component per GGUF file.
+[project.entry-points."dashai.plugins"]
+Qwen35_9B_Q3_K_S = "dashai_qwen35_9b.model:Qwen35_9B_Q3_K_S"
+Qwen35_9B_Q3_K_M = "dashai_qwen35_9b.model:Qwen35_9B_Q3_K_M"
+Qwen35_9B_IQ4_XS = "dashai_qwen35_9b.model:Qwen35_9B_IQ4_XS"
+Qwen35_9B_Q4_K_S = "dashai_qwen35_9b.model:Qwen35_9B_Q4_K_S"
+Qwen35_9B_Q4_K_M = "dashai_qwen35_9b.model:Qwen35_9B_Q4_K_M"
+Qwen35_9B_Q5_K_S = "dashai_qwen35_9b.model:Qwen35_9B_Q5_K_S"
+Qwen35_9B_Q5_K_M = "dashai_qwen35_9b.model:Qwen35_9B_Q5_K_M"
+Qwen35_9B_Q6_K = "dashai_qwen35_9b.model:Qwen35_9B_Q6_K"
+Qwen35_9B_Q8_0 = "dashai_qwen35_9b.model:Qwen35_9B_Q8_0"
+Qwen35_9B_BF16 = "dashai_qwen35_9b.model:Qwen35_9B_BF16"
+
+[tool.setuptools]
+packages = ["dashai_qwen35_9b"]
